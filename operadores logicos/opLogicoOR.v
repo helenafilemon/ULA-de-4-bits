@@ -1,11 +1,10 @@
-module opLogicoOR(W, X, Y, Z, A, B, C, D, E, F, G, H);
-	input A, B, C, D;
-	input E, F, G, H;
-	output W, X, Y, Z;
+module opLogicoOR(S, A, B);
+	input [3:0] A, B;
+	output [3:0] S;
 	
-	or Or0(W, A, E);
-	or Or1(X, B, F);
-	or Or2(Y, C, G);
-	or Or3(Z, D, H);
+	and Or0(S[0], A[0], B[0]);
+	and Or1(S[1], A[1], B[1]);
+	and Or2(S[2], A[2], B[2]);
+	and Or3(S[3], A[3], B[3]);
 	
 endmodule
