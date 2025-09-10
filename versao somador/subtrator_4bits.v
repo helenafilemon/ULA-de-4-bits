@@ -1,41 +1,39 @@
-module subtrator_4bits(Bout, W, X, Y, Z, A, B, C, D, E, F, G, H, Bin);
-    input A, B, C, D;
-    input E, F, G, H;
-    input Bin;
-    output W, X, Y, Z;
+module subtrator_4bits(S, Bout, A, B);
+    input [3:0] A, B;
+    output [3:0] S;
     output Bout;
 
     wire b0, b1, b2;
 
     subtrator_completo sub0 (
-        .A(A),
-        .B(E),
-        .Bin(Bin),
-        .Diferenca(W),
+        .A(A[0]),
+        .B(B[0]),
+        .Bin(1'b0),
+        .Diferenca(S[0]),
         .Bout(b0)
     );
 
     subtrator_completo sub1 (
-        .A(B),
-        .B(F),
+        .A(A[1]),
+        .B(B[1]),
         .Bin(b0),
-        .Diferenca(X),
+        .Diferenca(S[1]),
         .Bout(b1)
     );
 
     subtrator_completo sub2 (
-        .A(C),
-        .B(G),
+        .A(A[2]),
+        .B(B[2]),
         .Bin(b1),
-        .Diferenca(Y),
+        .Diferenca(S[2]),
         .Bout(b2)
     );
 
     subtrator_completo sub3 (
-        .A(D),
-        .B(H),
+        .A(A[3]),
+        .B(B[3]),
         .Bin(b2),
-        .Diferenca(Z),
+        .Diferenca(S[3]),
         .Bout(Bout)
     );
 
