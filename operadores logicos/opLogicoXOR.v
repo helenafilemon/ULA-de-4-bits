@@ -1,11 +1,10 @@
-module opLogicoXOR(W, X, Y, Z, A, B, C, D, E, F, G, H);
-	input A, B, C, D;
-	input E, F, G, H;
-	output W, X, Y, Z;
+module opLogicoXOR(S, A, B);
+	input [3:0] A, B;
+	output [3:0] S;
 	
-	xor Xor0(W, A, E);
-	xor Xor1(X, B, F);
-	xor Xor2(Y, C, G);
-	xor Xor3(Z, D, H);
+	and Xor0(S[0], A[0], B[0]);
+	and Xor1(S[1], A[1], B[1]);
+	and Xor2(S[2], A[2], B[2]);
+	and Xor3(S[3], A[3], B[3]);
 	
 endmodule
