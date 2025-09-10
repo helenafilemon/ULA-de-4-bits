@@ -1,33 +1,34 @@
-module somadorde4bits (S, T, U, V, Cout, A, B, C, D, E, F, G, H);
-	input A,B,C,D,E,F,G,H;
-	output S,T,U,V,Cout;
+module somadorde4bits (S, Cout, A, B);
+	input [3:0] A, B;
+	output [3:0] S;
+	output Cout;
 	wire Cin_Cout1, Cin_Cout2, Cin_Cout3;
 	SomadorPBL1 bit1(
-		.A(A),
-		.B(B),
+		.A(A[0]),
+		.B(B[0]),
 		.Cin(1'b0),
-		.S(S),
+		.S(S[0]),
 		.Cout(Cin_Cout1),
 	);
 	SomadorPBL1 bit2(
-		.A(C),
-		.B(D),
+		.A(A[1]),
+		.B(B[1]),
 		.Cin(Cin_Cout1),
-		.S(T),
+		.S(S[1]),
 		.Cout(Cin_Cout2),
 	);
 	SomadorPBL1 bit3(
-		.A(E),
-		.B(F),
+		.A(A[2]),
+		.B(B[2]),
 		.Cin(Cin_Cout2),
-		.S(U),
+		.S(S[2]),
 		.Cout(Cin_Cout3),
 	);
 	SomadorPBL1 bit4(
-		.A(G),
-		.B(H),
+		.A(A[3]),
+		.B(B[3]),
 		.Cin(Cin_Cout3),
-		.S(V),
+		.S(S[3]),
 		.Cout(Cout),
 	);
 endmodule 
