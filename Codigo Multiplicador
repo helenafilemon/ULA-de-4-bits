@@ -1,9 +1,119 @@
 module multiplicador(S, A, B);
    input [3:0]A,B;
-	output [7:0]S
-	wire w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11;
+	output [0:7]S
+	wire [20:0] w;
+	wire [10:0] Couts;
 	
-	and (S[0], A[0], B[0]);
-	and (S[0], A[0], B[0]);
-	and (S[0], A[0], B[0]);
-	and (S[0], A[0], B[0]);
+	and And0 (S[0], A[0], B[0]);
+	and And2 (w[0], A[0], B[1]);
+	and And5 (w[1], A[0], B[2]);
+	and And9 (w[2], A[0], B[3]);
+	
+	and And1 (w[3], A[1], B[0]);
+	and And4 (w[4], A[1], B[1]);
+	and And8 (w[5], A[1], B[2]);
+	and And12 (w[6], A[1], B[3]);
+	
+	and And3 (w[7], A[2], B[0]);
+	and And7 (w[8], A[2], B[1]);
+	and And11 (w[9], A[2], B[2]);
+	and And14 (w[10], A[2], B[3]);
+	
+	and And6 (w[11], A[3], B[0]);
+	and And10 (w[12], A[3], B[1]);
+	and And13 (w[13], A[3], B[2]);
+	and And15 (w[14], A[3], B[3]);
+	
+	
+	Meiosomador HA1(
+		.A(w[3]),
+		.B(w[0]),
+		.S(S[1]),
+		.Cout(Couts[0]),
+	);
+	
+	SomadorPBL1 FA1(
+		.A(w[7]),
+		.B(w[4]),
+		.Cin(Couts[0]),
+		.S(w[15]),
+		.Cout(Couts[1]),
+	);
+	
+	Meiosomador HA2(
+		.A(w[15]),
+		.B(w[1]),
+		.S(S[2]),
+		.Cout(Couts[2]),
+	);
+	
+	SomadorPBL1 FA2(
+		.A(w[8]),
+		.B(w[11]),
+		.Cin(Couts[1]),
+		.S(w[16]),
+		.Cout(Couts[3]),
+	);
+	
+	SomadorPBL1 FA3(
+		.A(w[16]),
+		.B(w[5]),
+		.Cin(Couts[2]),
+		.S(w[17]),
+		.Cout(Couts[4]),
+	);
+	
+	Meiosomador HA3(
+		.A(w[17]),
+		.B(w[2]),
+		.S(S[3]),
+		.Cout(Couts[5]),
+	);
+	
+	Meiosomador HA4(
+		.A(w[16]),
+		.B(w[12]),
+		.S(w[18]),
+		.Cout(Couts[6]),
+	);
+	
+	SomadorPBL1 FA4(
+		.A(w[18]),
+		.B(w[9]),
+		.Cin(Couts[4]),
+		.S(w[19]),
+		.Cout(Couts[7]),
+	);
+	
+	SomadorPBL1 FA5(
+		.A(w[19]),
+		.B(w[6]),
+		.Cin(Couts[5]),
+		.S(S[4]),
+		.Cout(Couts[8]),
+	);
+	
+	SomadorPBL1 FA6(
+		.A(Couts[6]),
+		.B(w[13]),
+		.Cin(Couts[7]),
+		.S(w[20]),
+		.Cout(Couts[9]),
+	);
+	
+	SomadorPBL1 FA7(
+		.A(w[20]),
+		.B(w[10]),
+		.Cin(Couts[8]),
+		.S(S[5]),
+		.Cout(Couts[10]),
+	);
+	
+	SomadorPBL1 FA8(
+		.A(Couts[9]),
+		.B(w[14]),
+		.Cin(Couts[10]),
+		.S(S[6]),
+		.Cout(S[7]),
+	);
+endmodule
