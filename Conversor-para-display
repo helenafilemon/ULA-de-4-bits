@@ -267,6 +267,31 @@ module seg_d0(
 endmodule
 
 
+module seg_e0(
+	 input R0, R1, R2, R3, R4, R5, R6, R7,
+    output e0
+);
+  wire [12:0] f;
+  
+  and AND1(f[0], ~R0, ~R1, ~R2, ~R3, ~R4, R5, ~R6);
+  and AND2(f[1], ~R0, ~R1, ~R2, ~R3, R4, R5, R6);
+  and AND3(f[2], ~R0, ~R1, ~R2, R3, R4, ~R5, ~R6);
+  and AND4(f[3], ~R0, ~R1, R2, ~R3, ~R4, ~R5, R6);
+  and AND5(f[4], ~R0, ~R1, R7);
+  and AND6(f[5], ~R0, ~R1, R2, ~R3, R4, R5, ~R6);
+  and AND7(f[6], ~R0, ~R1, R2, R3, ~R4, R5, R6);
+  and AND8(f[7], ~R0, R1, ~R2, ~R3, ~R4, ~R5, ~R6);
+  and AND9(f[8], ~R0, ~R2, R7);
+  and AND10(f[9], ~R0, R1, ~R2, ~R3, R4, ~R5, R6);
+  and AND11(f[10], ~R0, R1, ~R2, R3, ~R4, R5, ~R6);
+  and AND12(f[11], ~R0, R1, ~R2, R3, R4, R5, R6);
+  and AND13(f[12], ~R0, ~R3, ~R4, ~R5, R7);
+  
+  
+  or (e0, f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8], f[9], f[10], f[11], f[12]);
+endmodule
+
+
 
 
 
