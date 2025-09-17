@@ -1,4 +1,4 @@
-module Rot2Ckt1( S, Cout, A, B, Cin);
+module SomadorPBL1( S, Cout, A, B, Cin);
    input A, B, Cin;
    output S, Cout;
    wire T1, T2, T3;
