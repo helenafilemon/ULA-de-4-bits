@@ -247,3 +247,25 @@ module decodificador_display(
   or (a0, aw0[0], aw0[1], aw0[2], aw0[3], aw0[4], aw0[5], aw0[6], aw0[7], aw0[8], aw0[9], aw0[10], aw0[11], aw0[12], aw0[13], aw0[14], aw0[15], aw0[16], aw0[17], aw0[18], aw0[19]);
 
 endmodule
+PIN_A14
+PIN_A13
+PIN_B12
+PIN_A12
+PIN_C12
+PIN_D12
+PIN_C11
+PIN_C10
+PIN_C14
+PIN_C18
+PIN_E15
+PIN_D18
+PIN_C15
+PIN_E18
+PIN_C16
+PIN_B16
+PIN_E16
+PIN_A17
+PIN_D17
+PIN_A18
+PIN_C17
+PIN_B17
