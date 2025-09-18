@@ -1,7 +1,7 @@
 module decodificador(
 	input R0,R1,R2,R3,R4,R5,R6,R7,
 	output a0,b0,c0,d0,e0,f0,g0,a1,b1,c1,d1,f1,g1
-)
+);
 
 	seg_a0 (
 		.R0(R0),
