@@ -295,6 +295,80 @@ endmodule
 
 
 
+module seg_f0(
+	 input R0, R1, R2, R3, R4, R5, R6, R7,
+    output f0
+);
+  wire [24:0] f;
+  
+  and AND1(f[0], ~R0, ~R1, ~R2, ~R3, ~R4, ~R5, R6);
+  and AND2(f[1], ~R0, ~R1, ~R2, ~R3, R4, R5, ~R6);
+  and AND3(f[2], ~R0, ~R1, ~R2, R3, ~R4, R5, R6);
+  and AND4(f[3], ~R0, ~R1, R2, ~R3, ~R4, ~R5, ~R6);
+  and AND5(f[4], ~R0, ~R1, R2, ~R3, R4, ~R5, R6);
+  and AND6(f[5], ~R0, ~R1, R2, R3, ~R4, ~R5, R6, R7);
+  and AND7(f[6], ~R0, ~R1, R2, R3, ~R4, R5, ~R6);
+  and AND8(f[7], ~R0, ~R1, R2, R3, R4, R5, R6);
+  and AND9(f[8], ~R0, R1, ~R2, ~R3, R4, ~R5, ~R6);
+  and AND10(f[9], ~R0 & R1 & ~R2 & R3 & ~R4 & ~R5 & R6);
+  and AND11(f[10], ~R0, R1, ~R2, R3, R4, R5, ~R6);
+  and AND12(f[11], ~R0, R2, ~R3, ~R4, ~R5, ~R6, R7);
+  and AND13(f[12], ~R0, ~R1, ~R2, ~R3, ~R4, ~R5, R7);
+  and AND14(f[13], ~R0, ~R2, ~R3, ~R4, R6, R7);
+  and AND15(f[14], ~R0, ~R1, ~R2, ~R3, ~R5, R6, R7);
+  and AND16(f[15], ~R0, ~R1, ~R2, R3, ~R4, ~R6, R7);
+  and AND17(f[16], ~R0, ~R1, ~R2, R3, R4, R6, R7);
+  and AND18(f[17], ~R0, ~R1, R2, ~R3, ~R4, ~R6, R7);
+  and AND19(f[18], ~R0, ~R1, R2, ~R3, ~R5, ~R6, R7);
+  and AND20(f[19], ~R0, ~R1, R2, ~R3, R4, R6, R7);
+  and AND21(f[20], ~R0, ~R1, R2, R3, R4, ~R6, R7);
+  and AND22(f[21], ~R0, ~R2, ~R3, R4, R5, ~R6, R7);
+  and AND23(f[22], ~R0, ~R2, R3, ~R4, ~R5, ~R6, R7);
+  and AND24(f[23], ~R0, ~R2, ~R4, R5, R6, R7);
+  and AND25(f[24], ~R0, ~R2, R3, R4, ~R5, R6, R7);
+  
+  
+  or (f0, f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8], f[9], f[10], f[11], f[12], f[13], f[14], f[15], f[16], f[17], f[18], f[19], f[20], f[21], f[22], f[23], f[24]);
+endmodule
+
+
+
+
+
+module seg_g0(
+	 input R0, R1, R2, R3, R4, R5, R6, R7,
+    output g0
+);
+  wire [24:0] f;
+  
+  and AND1(f[0], ~R0, ~R1, ~R2, ~R3, ~R4, ~R5, ~R6);
+  and AND2(f[1], ~R0, ~R2, ~R3, ~R4, R5, R6, R7);
+  and AND3(f[2], ~R0, ~R1, ~R2, ~R3, R4, ~R5, R6);
+  and AND4(f[3], ~R0, ~R1, ~R2, R3, ~R4, R5, ~R6);
+  and AND5(f[4], ~R0, ~R1, ~R2, R3, R4, R5, R6);
+  and AND6(f[5], ~R0, ~R1, R2, ~R3, ~R4, R5, ~R6, R7);
+  and AND7(f[6], ~R0, ~R1, R2, ~R3, R4, ~R5, ~R6);
+  and AND8(f[7], ~R0, ~R1, R2, ~R3, R4, R5, R6, R7);
+  and AND9(f[8], ~R0, ~R1, R2, R3, ~R4, ~R5, R6);
+  and AND10(f[9], ~R0, ~R1, R2, R3, R4, R5, ~R6);
+  and AND11(f[10], ~R0, R1, ~R2, ~R3, ~R4, R6, R7);
+  and AND12(f[11], ~R0, R1, ~R2, ~R3, ~R4, R5, R6);
+  and AND13(f[12], ~R0, R1, ~R2, ~R3, R4, R5, ~R6, R7);
+  and AND14(f[13], ~R0, R1, ~R2, R3, ~R4, ~R5, ~R6);
+  and AND15(f[14], ~R0, R1, ~R2, ~R4, R5, R6, R7);
+  and AND16(f[15], ~R0, R1, ~R2, R3, R4, ~R5, R6);
+  and AND17(f[16], ~R0, R1, R2, ~R3, ~R4, ~R5, ~R6, R7);
+  and AND18(f[17], ~R0, ~R1, ~R2, ~R4, ~R5, ~R6, R7);
+  and AND19(f[18], ~R0, ~R1, ~R2, R4, ~R5, R6, R7);
+  and AND20(f[19], ~R0, ~R1, R2, R4, ~R5, ~R6, R7);
+  and AND21(f[20], ~R0, ~R1, R2, R3, R4, ~R6, R7);
+  
+  
+  or (g0, f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8], f[9], f[10], f[11], f[12], f[13], f[14], f[15], f[16], f[17], f[18], f[19], f[20]);
+endmodule
+
+
+
 
 
 
