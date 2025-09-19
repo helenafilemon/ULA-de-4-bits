@@ -1,9 +1,8 @@
-module ULA_Pronta(
+module ULA_Pronta(ins, select, outs,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1);
 	input [7:0]ins;
 	input [2:0]selet;
 	output [7:0] outs;
-	output la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1
-)
+	output la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1;
 	wire [4:0] s_add;
 	wire [4:0] s_sub;
 	wire [7:0] s_mult;
@@ -40,20 +39,6 @@ module ULA_Pronta(
 		.S1(selet[1]),
 		.S2(selet[2]),
 		.Y(outs[0])
-	);
-	
-	mux_7x1 BIT1(
-		.I0(1'b0),
-		.I1(1'b0),
-		.I2(1'b0),
-		.I3(1'b0),
-		.I4(s_add[1]),
-		.I5(s_sub[1]),
-		.I6(s_mult[1]),
-		.S0(sele[0]),
-		.S1(selet[1]),
-		.S2(selet[2]),
-		.Y(outs[1])
 	);
 	
 	mux_7x1 BIT1(
@@ -177,6 +162,6 @@ module ULA_Pronta(
 		.e1(le1),
 		.f1(lf1),
 		.g1(lg1)
-	)
+	);
 endmodule
 
