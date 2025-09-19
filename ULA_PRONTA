@@ -158,7 +158,7 @@ module ULA_Pronta(ins, selet, outs,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,l
 		.a1(la1),
 		.b1(lb1),
 		.c1(lc1),
-		.d1(l10),
+		.d1(ld1),
 		.e1(le1),
 		.f1(lf1),
 		.g1(lg1)
