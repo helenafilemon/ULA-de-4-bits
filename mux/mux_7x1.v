@@ -1,37 +1,137 @@
-/*mux7x1*/
-module mux_7x1 (Y, I0, I1, I2, I3, I4, I5, I6, S0, S1, S2);
-	input I0, I1, I2, I3, I4, I5, I6;
+/*mux8x1*/
+module mux_8x1 (Y, S0, S1, S2);
 	input S0, S1, S2;
-	output Y;
+	output [7:0] Y;
 	
-	wire not_S0, not_S1, not_S2;
+	wire [7:0] I0, I1, I2, I3, I4, I5, I6, I7;
 	
-	// Instanciando as portas NOT
-	//seletores negados
-	not (not_S0, S0);
-	not (not_S1, S1);
-	not (not_S2, S2);
+	assign I0 = 8'b11111111;
+	assign I1 = 8'b11111101;
+	assign I2 = 8'b11111100;
+	assign I3 = 8'b11111011;
+	assign I4 = 8'b01111010;
+	assign I5 = 8'b10011001;
+	assign I6 = 8'b00001111;
+	assign I7 = 8'b01010101;
 	
-	// saídas das portas AND
-	wire and_out0, and_out1, and_out2, and_out3, and_out4, and_out5, and_out6;
+	mux m0 (
+		.I0(I0[0]), 
+		.I1(I1[0]), 
+		.I2(I2[0]), 
+		.I3(I3[0]), 
+		.I4(I4[0]), 
+		.I5(I5[0]), 
+		.I6(I6[0]),  
+		.I7(I7[0]),
+		.S0(S0), 
+		.S1(S1), 
+		.S2(S2),
+		.Y(Y[0])
+	);	
+
+	mux m1 (
+		.I0(I0[1]), 
+		.I1(I1[1]), 
+		.I2(I2[1]), 
+		.I3(I3[1]), 
+		.I4(I4[1]), 
+		.I5(I5[1]), 
+		.I6(I6[1]),  
+		.I7(I7[1]),
+		.S0(S0), 
+		.S1(S1), 
+		.S2(S2),
+		.Y(Y[1])
+	);	
+
+	mux m2 (
+		.I0(I0[2]), 
+		.I1(I1[2]), 
+		.I2(I2[2]), 
+		.I3(I3[2]), 
+		.I4(I4[2]), 
+		.I5(I5[2]), 
+		.I6(I6[2]),  
+		.I7(I7[2]),
+		.S0(S0), 
+		.S1(S1), 
+		.S2(S2),
+		.Y(Y[2])
+	);	
 	
-	// Instanciando as 7 portas AND para cada combinação de seletor
-	// 000 (I0)
-	and And0(and_out0, I0, not_S2, not_S1, not_S0);
-	// 001 (I1)
-	and And1(and_out1, I1, not_S2, not_S1, S0);
-	// 010 (I2)
-	and And2(and_out2, I2, not_S2, S1, not_S0);
-	// 011 (I3)
-	and And3(and_out3, I3, not_S2, S1, S0);
-	// 100 (I4)
-	and And4(and_out4, I4, S2, not_S1, not_S0);
-	// 101 (I5)
-	and And5(and_out5, I5, S2, not_S1, S0);
-	// 110 (I6)
-	and And6(and_out6, I6, S2, S1, not_S0);
+	mux m3 (
+		.I0(I0[3]), 
+		.I1(I1[3]), 
+		.I2(I2[3]), 
+		.I3(I3[3]), 
+		.I4(I4[3]), 
+		.I5(I5[3]), 
+		.I6(I6[3]),  
+		.I7(I7[3]),
+		.S0(S0), 
+		.S1(S1), 
+		.S2(S2),
+		.Y(Y[3])
+	);	
 	
-	// Instanciando a porta OR final para combinar todas as saídas das portas AND
-	or Or0(Y, and_out0, and_out1, and_out2, and_out3, and_out4, and_out5, and_out6);
+	mux m4 (
+		.I0(I0[4]), 
+		.I1(I1[4]), 
+		.I2(I2[4]), 
+		.I3(I3[4]), 
+		.I4(I4[4]), 
+		.I5(I5[4]), 
+		.I6(I6[4]), 
+		.I7(I7[4]), 
+		.S0(S0), 
+		.S1(S1), 
+		.S2(S2),
+		.Y(Y[4])
+	);	
+	
+	mux m5 (
+		.I0(I0[5]), 
+		.I1(I1[5]), 
+		.I2(I2[5]), 
+		.I3(I3[5]), 
+		.I4(I4[5]), 
+		.I5(I5[5]), 
+		.I6(I6[5]),  
+		.I7(I7[5]),
+		.S0(S0), 
+		.S1(S1), 
+		.S2(S2),
+		.Y(Y[5])
+	);	
+	
+	mux m6 (
+		.I0(I0[6]), 
+		.I1(I1[6]), 
+		.I2(I2[6]), 
+		.I3(I3[6]), 
+		.I4(I4[6]), 
+		.I5(I5[6]), 
+		.I6(I6[6]),  
+		.I7(I7[6]),
+		.S0(S0), 
+		.S1(S1), 
+		.S2(S2),
+		.Y(Y[6])
+	);	
+	
+		mux m7 (
+		.I0(I0[7]), 
+		.I1(I1[7]), 
+		.I2(I2[7]), 
+		.I3(I3[7]), 
+		.I4(I4[7]), 
+		.I5(I5[7]), 
+		.I6(I6[7]), 
+		.I7(I7[7]),
+		.S0(S0), 
+		.S1(S1), 
+		.S2(S2),
+		.Y(Y[7])
+	);	
 	
 endmodule
