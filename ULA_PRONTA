@@ -31,6 +31,24 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 		.S(s_sub[3:0]), 
 		.Bout(s_sub[4]) //Negativo caso saia 1
 	);
+
+	opLogicoAND log_and(
+		.A(ins[3:0]),
+		.B(ins[7:4]),
+		.S(s_and[3:0])
+	);
+
+	opLogicoOR log_or(
+		.A(ins[3:0]),
+		.B(ins[7:4]),
+		.S(s_or[3:0])
+	);
+
+	opLogicoXOR log_xor(
+		.(ins[3:0]),
+		.B(ins[7:4]),
+		.S(s_xor[3:0])
+	);
 	
 	mux_7x1 BIT0(
 		.I0(1'b0),
