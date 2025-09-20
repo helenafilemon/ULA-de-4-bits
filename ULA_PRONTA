@@ -7,6 +7,9 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	wire [4:0] s_add;
 	wire [4:0] s_sub;
 	wire [7:0] s_mult;
+	wire [3:0] s_or;
+	wire [3:0] s_xor;
+	wire [3:0] s_and;
 	
 	multiplicador MT(
 		.A(ins[3:0]),
@@ -31,9 +34,9 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	
 	mux_7x1 BIT0(
 		.I0(1'b0),
-		.I1(1'b0),
-		.I2(1'b0),
-		.I3(1'b0),
+		.I1(s_and[0]),
+		.I2(s_or[0]),
+		.I3(s_xor[0]),
 		.I4(s_add[0]),
 		.I5(s_sub[0]),
 		.I6(s_mult[0]),
@@ -45,9 +48,9 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	
 	mux_7x1 BIT1(
 		.I0(1'b0),
-		.I1(1'b0),
-		.I2(1'b0),
-		.I3(1'b0),
+		.I1(s_and[1]),
+		.I2(s_or[1]),
+		.I3(s_xor[1]),
 		.I4(s_add[1]),
 		.I5(s_sub[1]),
 		.I6(s_mult[1]),
@@ -59,9 +62,9 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	
 	mux_7x1 BIT2(
 		.I0(1'b0),
-		.I1(1'b0),
-		.I2(1'b0),
-		.I3(1'b0),
+		.I1(s_and[2]),
+		.I2(s_or[2]),
+		.I3(s_xor[2]),
 		.I4(s_add[2]),
 		.I5(s_sub[2]),
 		.I6(s_mult[2]),
@@ -73,9 +76,9 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	
 	mux_7x1 BIT3(
 		.I0(1'b0),
-		.I1(1'b0),
-		.I2(1'b0),
-		.I3(1'b0),
+		.I1(s_and[3]),
+		.I2(s_or[3]),
+		.I3(s_xor[3]),
 		.I4(s_add[3]),
 		.I5(s_sub[3]),
 		.I6(s_mult[3]),
@@ -140,6 +143,8 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 		.S2(selet[2]),
 		.Y(outs[7])
 	);
+	
+	//Colocar um Mux para o Bit4 do subtrator, para que na entrada do decodificador do display 
 	
 	decodificador_display(
 		.R0(outs[7]),
