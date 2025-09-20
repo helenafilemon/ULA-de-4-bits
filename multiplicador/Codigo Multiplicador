@@ -23,8 +23,7 @@ module multiplicador(S, A, B);
 	and And10 (w[12], A[3], B[1]);
 	and And13 (w[13], A[3], B[2]);
 	and And15 (w[14], A[3], B[3]);
-	
-	
+
 	Meiosomador HA1(
 		.A(w[3]),
 		.B(w[0]),
@@ -71,7 +70,7 @@ module multiplicador(S, A, B);
 	);
 	
 	Meiosomador HA4(
-		.A(w[16]),
+		.A(couts[3]),
 		.B(w[12]),
 		.S(w[18]),
 		.Cout(Couts[6])
