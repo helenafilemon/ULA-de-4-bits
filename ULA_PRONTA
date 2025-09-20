@@ -19,13 +19,13 @@ module ULA_Pronta(ins, selet, outs,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,l
 		.B(ins[7:4]),
 		.Crry(krry)
 		.S(s_add[3:0]),
-		.Cout(s_add[4])
+		.Cout(s_add[4]) //Flag CarryOut
 	);
 	
 	subtrator_4bits SB(
 		.A(ins[3:0]),
 		.B(ins[7:4]),
-		.S(s_sub[3:0]),
+		.S(s_sub[3:0]), 
 		.Bout(s_sub[4])
 	);
 	
