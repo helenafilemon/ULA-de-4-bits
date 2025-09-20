@@ -1,12 +1,13 @@
 module somadorde4bits (S, Cout, A, B);
 	input [3:0] A, B;
+	input Crry;
 	output [3:0] S;
 	output Cout;
 	wire Cin_Cout1, Cin_Cout2, Cin_Cout3;
 	SomadorPBL1 bit1(
 		.A(A[0]),
 		.B(B[0]),
-		.Cin(1'b0),
+		.Cin(Crry),
 		.S(S[0]),
 		.Cout(Cin_Cout1),
 	);
