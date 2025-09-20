@@ -1,5 +1,6 @@
 module ULA_Pronta(ins, selet, outs,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1);
 	input [7:0]ins;
+	input krry;
 	input [2:0]selet;
 	output [7:0] outs;
 	output la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1;
@@ -16,6 +17,7 @@ module ULA_Pronta(ins, selet, outs,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,l
 	somadorde4bits SM(
 		.A(ins[3:0]),
 		.B(ins[7:4]),
+		.Crry(krry)
 		.S(s_add[3:0]),
 		.Cout(s_add[4])
 	);
