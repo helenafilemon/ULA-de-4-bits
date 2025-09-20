@@ -1,4 +1,4 @@
-module ULA_Pronta(ins, selet, outs,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1);
+module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1);
 	input [7:0]ins;
 	input krry;
 	input [2:0]selet;
