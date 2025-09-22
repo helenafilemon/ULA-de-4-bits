@@ -1,4 +1,4 @@
-module somadorde4bits (S, Cout, A, B);
+module somadorde4bits (S, Cout, A, B, Crry);
 	input [3:0] A, B;
 	input Crry;
 	output [3:0] S;
