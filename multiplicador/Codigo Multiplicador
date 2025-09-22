@@ -70,7 +70,7 @@ module multiplicador(S, A, B);
 	);
 	
 	Meiosomador HA4(
-		.A(couts[3]),
+		.A(Couts[3]),
 		.B(w[12]),
 		.S(w[18]),
 		.Cout(Couts[6])
