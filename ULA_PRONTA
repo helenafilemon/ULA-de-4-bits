@@ -45,7 +45,7 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	);
 
 	opLogicoXOR log_xor(
-		.(ins[3:0]),
+		.A(ins[3:0]),
 		.B(ins[7:4]),
 		.S(s_xor[3:0])
 	);
