@@ -1,9 +1,9 @@
-module ULA_Pronta(ins,err,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1);
+module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1);
 	input [7:0]ins;
 	input krry;
 	input [2:0]selet;
 	output [7:0] outs;
-	output la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1,err;
+	output la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1,err,zero;
 	wire [4:0] s_add;
 	wire [4:0] s_sub;
 	wire [7:0] s_mult;
@@ -170,7 +170,11 @@ module ULA_Pronta(ins,err,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc
 		.S2(selet[2]),
 		.Y(outs[7])
 	);
-	 
+
+	zero flag(
+		.A(outs),
+		.S(zero)
+	);
 	
 	decodificador_display(
 		.R0(outs[7]),
