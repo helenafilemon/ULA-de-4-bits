@@ -1,12 +1,13 @@
-module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1);
+module ULA_Pronta(ins,err,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1);
 	input [7:0]ins;
 	input krry;
 	input [2:0]selet;
 	output [7:0] outs;
-	output la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1;
+	output la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld1,le1,lf1,lg1,err;
 	wire [4:0] s_add;
 	wire [4:0] s_sub;
 	wire [7:0] s_mult;
+	wire [4:0] s_div;
 	wire [3:0] s_or;
 	wire [3:0] s_xor;
 	wire [3:0] s_and;
@@ -15,6 +16,14 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 		.A(ins[3:0]),
 		.B(ins[7:4]),
 		.S(s_mult)	
+	);
+
+	divisor DV(
+		.A(ins[3:0]),
+		.B(ins[7:4]),
+		.crry(krry),
+		.S(s_div),
+		.Error(err)
 	);
 	
 	somadorde4bits SM(
@@ -51,7 +60,7 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	);
 	
 	mux BIT0(
-		.I0(1'b0),
+		.I0(s_div[0]),
 		.I1(s_and[0]),
 		.I2(s_or[0]),
 		.I3(s_xor[0]),
@@ -65,7 +74,7 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	);
 	
 	mux BIT1(
-		.I0(1'b0),
+		.I0(s_div[1]),
 		.I1(s_and[1]),
 		.I2(s_or[1]),
 		.I3(s_xor[1]),
@@ -79,7 +88,7 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	);
 	
 	mux BIT2(
-		.I0(1'b0),
+		.I0(s_div[2]),
 		.I1(s_and[2]),
 		.I2(s_or[2]),
 		.I3(s_xor[2]),
@@ -93,7 +102,7 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	);
 	
 	mux BIT3(
-		.I0(1'b0),
+		.I0(s_div[3]),
 		.I1(s_and[3]),
 		.I2(s_or[3]),
 		.I3(s_xor[3]),
@@ -107,7 +116,7 @@ module ULA_Pronta(ins,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,lb1,lc1,ld
 	);
 	
 	mux BIT4(
-		.I0(1'b0),
+		.I0(s_div[4]),
 		.I1(1'b0),
 		.I2(1'b0),
 		.I3(1'b0),
