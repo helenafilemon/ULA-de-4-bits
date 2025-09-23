@@ -11,6 +11,9 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 	wire [3:0] s_or;
 	wire [3:0] s_xor;
 	wire [3:0] s_and;
+	wire s_err, verif;
+	nor (verif, selet[0], selet[1], selet[2]);
+	and (err, s_err, verif);
 	
 	multiplicador MT(
 		.A(ins[3:0]),
@@ -23,8 +26,9 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 		.B(ins[7:4]),
 		.crry(krry),
 		.S(s_div),
-		.Error(err)
+		.Error(s_err)
 	);
+	
 	
 	somadorde4bits SM(
 		.A(ins[3:0]),
@@ -59,7 +63,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 		.S(s_xor[3:0])
 	);
 	
-	mux BIT0(
+	mux_8x1 BIT0(
 		.I0(s_div[0]),
 		.I1(s_and[0]),
 		.I2(s_or[0]),
@@ -73,7 +77,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 		.Y(outs[0])
 	);
 	
-	mux BIT1(
+	mux_8x1 BIT1(
 		.I0(s_div[1]),
 		.I1(s_and[1]),
 		.I2(s_or[1]),
@@ -87,7 +91,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 		.Y(outs[1])
 	);
 	
-	mux BIT2(
+	mux_8x1 BIT2(
 		.I0(s_div[2]),
 		.I1(s_and[2]),
 		.I2(s_or[2]),
@@ -101,7 +105,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 		.Y(outs[2])
 	);
 	
-	mux BIT3(
+	mux_8x1 BIT3(
 		.I0(s_div[3]),
 		.I1(s_and[3]),
 		.I2(s_or[3]),
@@ -115,7 +119,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 		.Y(outs[3])
 	);
 	
-	mux BIT4(
+	mux_8x1 BIT4(
 		.I0(s_div[4]),
 		.I1(1'b0),
 		.I2(1'b0),
@@ -129,7 +133,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 		.Y(outs[4])
 	);
 	
-	mux BIT5(
+	mux_8x1 BIT5(
 		.I0(1'b0),
 		.I1(1'b0),
 		.I2(1'b0),
@@ -143,7 +147,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 		.Y(outs[5])
 	);
 	
-	mux BIT6(
+	mux_8x1 BIT6(
 		.I0(1'b0),
 		.I1(1'b0),
 		.I2(1'b0),
@@ -157,7 +161,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 		.Y(outs[6])
 	);
 	
-	mux BIT7(
+	mux_8x1 BIT7(
 		.I0(1'b0),
 		.I1(1'b0),
 		.I2(1'b0),
