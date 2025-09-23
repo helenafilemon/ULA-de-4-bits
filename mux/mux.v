@@ -1,6 +1,6 @@
 /*mux*/
 
-module mux (Y, I0, I1, I2, I3, I4, I5, I6, I7, S0, S1, S2);
+module mux_8x1 (Y, I0, I1, I2, I3, I4, I5, I6, I7, S0, S1, S2);
 	input I0, I1, I2, I3, I4, I5, I6, I7;
 	input S0, S1, S2;
 	output Y;
