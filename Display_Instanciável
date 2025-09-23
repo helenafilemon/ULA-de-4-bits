@@ -13,7 +13,7 @@ module decodificador_display(R0,R1,R2,R3,R4,R5,R6,R7,a0,b0,c0,d0,e0,f0,g0,a1,b1,
   wire [2:0] cw1;
   wire [6:0] dw1;
   wire [10:0] ew1;
-  wire [5:0] fw1;
+  wire [7:0] fw1;
   wire [6:0] gw1;
   wire nR0, nR1, nR2, nR3, nR4, nR5, nR6, nR7;
 
@@ -231,6 +231,8 @@ module decodificador_display(R0,R1,R2,R3,R4,R5,R6,R7,a0,b0,c0,d0,e0,f0,g0,a1,b1,
   and (fw1[3], nR0, R1, nR2, nR3, R4);
   and (fw1[4], nR0, R1, nR2, nR3, R4);
   and (fw1[5], nR0, nR1, nR2, R4, R5);
+  and (fw1[6], nR0, nR1, nR2, nR3, R4, nR5, R6, nR7);
+  and (fw1[7], nR0, nR1, nR2, nR3, R4, nR5, R6, R7);
   
   
   and (gw1[0], nR1, nR2, nR3);
@@ -241,7 +243,7 @@ module decodificador_display(R0,R1,R2,R3,R4,R5,R6,R7,a0,b0,c0,d0,e0,f0,g0,a1,b1,
   and (gw1[5], R1, nR3, R4);
   
   or (g1, gw1[0], gw1[1], gw1[2], gw1[3], gw1[4], gw1[5], R0);
-  or (f1, fw1[0], fw1[1], fw1[2], fw1[3], fw1[4], fw1[5]);
+  or (f1, fw1[0], fw1[1], fw1[2], fw1[3], fw1[4], fw1[5], fw1[6], fw1[7]);
   or (e1, ew1[0], ew1[1], ew1[2], ew1[3], ew1[4], ew1[5], ew1[6], ew1[7], ew1[8], ew1[9], ew1[10]);
   or (d1, dw1[0], dw1[1], dw1[2], dw1[3], dw1[4], dw1[5], dw1[6]); 
   or (c1, cw1[0], cw1[1], cw1[2]); 
