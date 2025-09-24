@@ -11,9 +11,11 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 	wire [3:0] s_or;
 	wire [3:0] s_xor;
 	wire [3:0] s_and;
-	wire s_err, verif;
+	wire s_err, verif, s_zero, verif2;
 	nor (verif, selet[0], selet[1], selet[2]);
 	and (err, s_err, verif);
+	or (verif2, selet[0], selet[1], selet[2]);
+	and (zero, verif2, s_zero);
 	
 	multiplicador MT(
 		.A(ins[3:0]),
@@ -177,7 +179,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 
 	zero flag(
 		.A(outs),
-		.S(zero)
+		.S(s_zero)
 	);
 	
 	decodificador_display(
