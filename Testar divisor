@@ -1,0 +1,214 @@
+// Módulo principal sem a entrada 'crry'
+module divisor(A, B, S, Error);
+    input [3:0] A, B;
+    output [4:0] S;
+    output Error;
+    wire [3:0] nB;
+
+    not (nB[0], B[0]);
+    not (nB[1], B[1]);
+    not (nB[2], B[2]);
+    not (nB[3], B[3]);
+
+    // O erro de divisão por zero (B=0000) permanece o mesmo
+    and (Error, nB[3], nB[2], nB[1], nB[0]);
+
+    // Instâncias dos submódulos agora sem a conexão .crry
+    divisor0 (.A(A), .B(B), .S0(S[0]));
+    divisor1 (.A(A), .B(B), .S1(S[1]));
+    divisor2 (.A(A), .B(B), .S2(S[2]));
+    divisor3 (.A(A), .B(B), .S3(S[3]));
+    divisor4 (.A(A), .B(B), .S4(S[4]));
+endmodule
+
+//=============== SUBMÓDULOS MODIFICADOS ===============
+
+module divisor0 (A, B, S0);
+    // A porta 'crry' foi removida
+    input [3:0] A, B;
+    output S0;
+    wire [3:0] nA, nB;
+    wire [48:0] w; // Mantido para não renumerar, mas alguns fios não serão usados
+
+    not (nA[0], A[0]);
+    not (nA[1], A[1]);
+    not (nA[2], A[2]);
+    not (nA[3], A[3]);
+    not (nB[0], B[0]);
+    not (nB[1], B[1]);
+    not (nB[2], B[2]);
+    not (nB[3], B[3]);
+            
+    // Termos que dependiam de 'ncrry' (crry=0) foram desativados e podem ser removidos.
+    // Para clareza, eles foram comentados.
+    // and (w[0], ncrry, ...);
+    // and (w[1], ncrry, ...);
+    and (w[2], A[1], nA[0], nB[3], nB[2], B[1], nB[0]);
+    // and (w[3], ncrry, ...);
+    and (w[4], nA[3], A[2], nA[1], nA[0], nB[3], nB[2], B[1], B[0]);
+    and (w[5], A[2], nA[1], nB[3], B[2], nB[1], nB[0]);
+    and (w[6], A[2], nA[0], nB[3], B[2], nB[1], nB[0]);
+    // and (w[7], ncrry, ...);
+    and (w[8], nA[3], A[2], nA[1], A[0], nB[3], B[2], nB[1]);
+    and (w[9], nA[3], A[2], A[1], nA[0], nB[3], B[2], nB[1]);
+    and (w[10], nA[3], A[2], A[1], nB[3], B[2], B[1], nB[0]);
+    // and (w[11], ncrry, ...);
+    // and (w[12], ncrry, ...);
+    // and (w[13], ncrry, ...);
+    // and (w[14], ncrry, ...);
+    and (w[15], A[3], nA[2], nA[1], nB[3], B[2], B[1]);
+    // and (w[16], ncrry, ...);
+    and (w[17], A[3], nA[2], nB[3], B[2], B[1], B[0]);
+    and (w[18], A[3], nA[1], nA[0], nB[3], B[2], B[1], B[0]);
+    and (w[19], A[3], nA[2], B[3], nB[2], nB[1], nB[0]);
+    and (w[20], A[3], nA[2], nA[1], A[0], nB[3], B[1], B[0]);
+    and (w[21], A[3], nA[2], A[0], B[3], nB[2], nB[1]);
+    and (w[22], A[3], nA[2], A[1], nA[0], nB[3], B[1]);
+    // and (w[23], ncrry, ...);
+    and (w[24], A[3], nA[2], A[1], B[3], nB[2], nB[0]);
+    // and (w[25], ncrry, ...);
+    and (w[26], A[3], A[2], nA[1], B[3], nB[2]);
+    and (w[27], A[3], A[2], nA[0], B[3], nB[2]);
+    and (w[28], A[3], A[2], B[3], B[2], nB[1], nB[0]);
+    and (w[29], A[3], A[2], nA[1], A[0], B[3], nB[1]);
+    and (w[30], A[3], A[2], A[1], nA[0], B[3], nB[1]);
+    and (w[31], A[3], A[2], A[1], B[3], B[1], nB[0]);
+    and (w[32], A[3], A[2], A[1], A[0], B[3], B[0]);
+
+    // Termos que dependiam de 'crry = 1' tiveram o 'crry' removido da porta AND
+    and (w[33], nA[0], nB[3], nB[2], nB[1], B[0]);
+    and (w[34], nA[1], A[0], nB[3], nB[2], B[1], nB[0]);
+    and (w[35], nA[3], nA[2], A[1], nB[3], nB[2], B[1], B[0]);
+    and (w[36], nA[2], A[1], A[0], nB[3], B[2], nB[1], nB[0]);
+    and (w[37], nA[3], A[2], nB[3], B[2], nB[1], B[0]);
+    and (w[38], nA[3], A[2], nA[1], A[0], nB[3], B[2], nB[0]);
+    and (w[39], A[2], A[1], nB[3], B[2], nB[1], B[0]);
+    and (w[40], nA[3], A[2], A[1], nB[3], B[2], B[1]);
+    and (w[41], nA[3], A[2], A[1], A[0], B[3], nB[2], nB[1], nB[0]);
+    and (w[42], A[3], nA[2], nA[1], nA[0], nB[3], B[0]);
+    and (w[43], A[3], nA[2], B[3], nB[2], nB[1]);
+    and (w[44], A[3], nA[2], A[0], B[3], nB[2], nB[0]);
+    and (w[45], A[3], nA[2], A[1], B[3], nB[2]);
+    and (w[46], A[3], nA[2], A[1], A[0], B[3], nB[1], nB[0]);
+    and (w[47], A[3], A[2], B[3], B[2], nB[1]);
+    and (w[48], A[3], A[2], nA[1], A[0], B[3], nB[0]);
+
+    // Porta OR final com os termos desativados removidos
+    or (S0, w[2], w[4], w[5], w[6], w[8], w[9], w[10], w[15], w[17], w[18],
+         w[19], w[20], w[21], w[22], w[24], w[26], w[27], w[28], w[29], w[30],
+         w[31], w[32], w[33], w[34], w[35], w[36], w[37], w[38], w[39], w[40],
+         w[41], w[42], w[43], w[44], w[45], w[46], w[47], w[48]);
+endmodule
+
+module divisor1(A, B, S1);
+    input [3:0] A, B;
+    output S1;
+    wire [3:0] nA, nB;
+    wire [22:0] w;
+    
+    not (nA[0],A[0]);
+    not (nA[1],A[1]);
+    not (nA[2],A[2]);
+    not (nA[3],A[3]);
+    not (nB[0],B[0]);
+    not (nB[1],B[1]);
+    not (nB[2],B[2]);
+    not (nB[3],B[3]);
+    
+    // and (w[0],ncrry,...);
+    and (w[1],A[1],nA[0],nB[3],nB[2],nB[1],B[0]);
+    // and (w[2],ncrry,...);
+    and (w[3],A[2],nA[1],nB[3],nB[2],B[1],nB[0]);
+    and (w[4],A[2],nA[0],nB[3],nB[2],B[1],nB[0]);
+    and (w[5],nA[3],A[2],A[1],nB[3],nB[2],B[1],B[0]);
+    and (w[6],A[3],nA[2],nA[1],nB[3],nB[2],B[1],B[0]);
+    and (w[7],A[3],nA[2],nB[3],B[2],nB[1],nB[0]);
+    // and (w[8],ncrry,...);
+    and (w[9],A[3],nA[2],A[1],nA[0],nB[3],nB[2],B[0]);
+    and (w[10],A[3],A[1],nB[3],B[2],nB[1],B[0]);
+    and (w[11],A[3],A[2],nA[1],nB[3],B[2],nB[1]);
+    and (w[12],A[3],A[2],nB[3],B[2],B[1],nB[0]);
+    // and (w[13],ncrry,...);
+    and (w[14],A[3],A[2],A[1],nA[0],nB[3],B[2]);
+    and (w[15],nA[1],A[0],nB[3],nB[2],nB[1],B[0]);
+    and (w[16],nA[2],A[1],A[0],nB[3],nB[2],B[1],nB[0]);
+    and (w[17],nA[3],A[2],nA[1],A[0],nB[3],nB[2],B[1]);
+    and (w[18],nA[3],A[2],A[1],A[0],nB[3],B[2],nB[1],nB[0]);
+    and (w[19],A[3],nA[2],A[0],nB[3],B[2],nB[1]);
+    and (w[20],A[3],nA[2],A[1],A[0],nB[3],B[2],nB[0]);
+    and (w[21],A[3],A[2],A[0],nB[3],B[2],B[1]);
+    and (w[22],A[3],A[2],A[1],A[0],B[3],nB[2],nB[1],nB[0]);
+    
+    or (S1,w[1],w[3],w[4],w[5],w[6],w[7],w[9],w[10],w[11],w[12],w[14],
+        w[15],w[16],w[17],w[18],w[19],w[20],w[21],w[22]);
+endmodule
+
+module divisor2(A, B, S2);
+    input [3:0] A, B;
+    output S2;
+    wire [3:0] nA, nB;
+    wire [11:0] w;
+
+    not (nA[0],A[0]);
+    not (nA[1],A[1]);
+    not (nA[2],A[2]);
+    not (nA[3],A[3]);
+    not (nB[0],B[0]);
+    not (nB[1],B[1]);
+    not (nB[2],B[2]);
+    not (nB[3],B[3]);
+
+    // and (w[0],ncrry,...);
+    and (w[1],A[2],nA[1],nB[3],nB[2],nB[1],B[0]);
+    and (w[2],A[2],nA[0],nB[3],nB[2],nB[1],B[0]);
+    // and (w[3],ncrry,...);
+    and (w[4],A[3],nA[2],nB[3],nB[2],B[1],nB[0]);
+    and (w[5],A[3],nA[1],nB[3],nB[2],B[1],nB[0]);
+    and (w[6],A[3],nA[0],nB[3],nB[2],B[1],nB[0]);
+    and (w[7],A[3],A[2],nB[3],nB[2],B[1],B[0]);
+    and (w[8],nA[2],A[1],A[0],nB[3],nB[2],nB[1],B[0]);
+    and (w[9],nA[3],A[2],A[1],A[0],nB[3],nB[2],B[1],nB[0]);
+    and (w[10],A[3],nA[2],A[1],A[0],nB[3],nB[2],B[1]);
+    and (w[11],A[3],A[2],A[1],A[0],nB[3],B[2],nB[1],nB[0]);
+
+    or (S2,w[1],w[2],w[4],w[5],w[6],w[7],w[8],w[9],w[10],w[11]);
+endmodule
+
+module divisor3(A, B, S3);
+    input [3:0] A, B;
+    output S3;
+    wire [3:0] nA, nB;
+    wire [5:0] w;
+
+    not (nA[0],A[0]);
+    not (nA[1],A[1]);
+    not (nA[2],A[2]);
+    not (nA[3],A[3]);
+    not (nB[0],B[0]);
+    not (nB[1],B[1]);
+    not (nB[2],B[2]);
+    not (nB[3],B[3]);
+
+    // and (w[0],ncrry,...);
+    and (w[1],A[3],nA[2],nB[3],nB[2],nB[1],B[0]);
+    and (w[2],A[3],nA[1],nB[3],nB[2],nB[1],B[0]);
+    and (w[3],A[3],nA[0],nB[3],nB[2],nB[1],B[0]);
+    and (w[4],nA[3],A[2],A[1],A[0],nB[3],nB[2],nB[1],B[0]);
+    and (w[5],A[3],A[2],A[1],A[0],nB[3],nB[2],B[1],nB[0]);
+
+    or (S3,w[1],w[2],w[3],w[4],w[5]);
+endmodule
+
+module divisor4(A, B, S4);
+    input [3:0] A, B;
+    output S4;
+    wire [3:0] nB;
+
+    not (nB[0],B[0]);
+    not (nB[1],B[1]);
+    not (nB[2],B[2]);
+    not (nB[3],B[3]);
+
+    // O 'crry' foi removido da porta AND
+    and (S4, A[3], A[2], A[1], A[0], nB[3], nB[2], nB[1], B[0]);
+endmodule
