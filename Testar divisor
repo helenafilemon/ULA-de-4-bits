@@ -156,5 +156,3 @@ module divisor3(A, B, S3);
     or (S3,w[0],w[1],w[2],w[3]);
 endmodule
 
-
-endmodule
