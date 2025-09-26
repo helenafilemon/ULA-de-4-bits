@@ -7,7 +7,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 	wire [4:0] s_add;
 	wire [4:0] s_sub;
 	wire [7:0] s_mult;
-	wire [4:0] s_div;
+	wire [3:0] s_div;
 	wire [3:0] s_or;
 	wire [3:0] s_xor;
 	wire [3:0] s_and;
@@ -26,7 +26,6 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 	divisor DV(
 		.A(ins[3:0]),
 		.B(ins[7:4]),
-		.crry(krry),
 		.S(s_div),
 		.Error(s_err)
 	);
@@ -122,7 +121,7 @@ module ULA_Pronta(ins,err,zero,selet,outs,krry,la0,lb0,lc0,ld0,le0,lf0,lg0,la1,l
 	);
 	
 	mux_8x1 BIT4(
-		.I0(s_div[4]),
+		.I0(1'b0),
 		.I1(1'b0),
 		.I2(1'b0),
 		.I3(1'b0),
